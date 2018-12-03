@@ -1,0 +1,45 @@
+import os 
+import re 
+
+					
+def convert():
+		listFichierPdf = os.listdir('.') 
+		dir_path = os.path.dirname(os.path.abspath(__file__))
+		
+		for i in listFichierPdf :
+		
+			if i.endswith(".txt"):
+				f= open (i ,"r")
+				f1 = open (os.path.splitext(os.path.basename(i))[0]+'modif' , "w")
+				f1.write ("title : " +os.path.splitext(os.path.basename(i))[0] +"\n")
+				for x , line in enumerate(f):
+					if x == 3 :
+						f1.write("auteur  : " + line)
+						f.close
+						f1.close
+
+def convert2():
+	
+	listFichierPdf = os.listdir('.') 
+	dir_path = os.path.dirname(os.path.abspath(__file__))
+		
+	for i in listFichierPdf :
+			if i.endswith(".txt"):
+				
+				fichier = open (os.path.splitext(os.path.basename(i))[0]+'modif' , "a")
+				with open(i, "rb") as f:
+					print i
+					textfile_temp = f.read()
+					
+					fichier.write( 'abstract : '+ textfile_temp.split("abstract")[1].split("introduction")[0])
+					fichier.close
+					f.close
+
+if __name__ == '__main__':
+	
+	#createFolder()
+	#createFichier() 	
+	convert()
+	convert2()
+					
+					
